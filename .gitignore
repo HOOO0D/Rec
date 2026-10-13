@@ -1,0 +1,42 @@
+# Python 缓存
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Python 虚拟环境
+.venv/
+venv/
+env/
+.conda/
+
+# 编辑器临时文件
+.vscode/
+.idea/
+.ipynb_checkpoints/
+
+# 数据集与数据缓存
+data/
+datasets/
+cache/
+
+# 训练产生的大型文件
+checkpoints/
+saved/
+wandb/
+runs/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# 日志和临时文件
+*.log
+tmp/
+temp/
+
+# 凭证和密钥
+.env
+.env.*
+!.env.example
+*.key
