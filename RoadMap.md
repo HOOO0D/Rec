@@ -59,15 +59,15 @@
 
 - [x] **Day 1｜已完成基础（2026-10-14；原始 Day 1 至 Day 4）**：已掌握 Tensor、矩阵运算、自动求导、`nn.Module` 和 Optimizer；原任务文件为 `tensor_basics.py`、`tensor_ops.py`、`autograd.py`、`linear_regression.py`。完成状态依据本人反馈，代码交付与独立验收仍需核对；不重复安排四天课程。
   - **当日验收**：不看教程写出小型 nn.Module 和完整训练循环；手算并核对一次矩阵乘与多项式梯度；解释梯度累积，并用参数前后差异确认 step 有效。若仍需照抄，Day 2 开始前针对薄弱点补练。
-- [ ] **Day 2｜Embedding 和批数据**：学习 `nn.Embedding`、`Dataset`、`DataLoader`、Batch 维度；从用户/物品 ID 得到向量并计算点积；完成 `embedding.py`。
+- [x] **Day 2｜Embedding 和批数据**：学习 `nn.Embedding`、`Dataset`、`DataLoader`、Batch 维度；从用户/物品 ID 得到向量并计算点积；完成 `embedding.py`。
   - **当日验收**：提交 embedding.py；一个批次的 ID 为 [B]、向量为 [B,d]、点积得分为 [B]；ID 使用整数类型；反传后被访问的 Embedding 行有梯度且更新，DataLoader 能遍历完整数据。
 - [ ] **Day 3｜周综合练习**：用两个 Embedding 表和一个简单 Loss 训练“用户—物品评分”小模型；检查参数确实发生更新；完成 `simple_recommender.py` 和 `week01_notes.md`。
   - **当日验收**：不照抄教程完成 simple_recommender.py；在固定种子的微型评分数据上观察 Loss 下降和参数更新；保存并重载后同一输入预测一致；提交 week01_notes.md 并通过本周全部验收。
 
 ### 周验收
 
-- [ ] 不看教程解释 `Tensor.shape`、广播、向量点积、矩阵乘法。
-- [ ] 能说出 `zero_grad()`、`backward()`、`step()` 的作用与顺序。
+- [x] 不看教程解释 `Tensor.shape`、广播、向量点积、矩阵乘法。
+- [x] 能说出 `zero_grad()`、`backward()`、`step()` 的作用与顺序。
 - [ ] 能独立实现 `nn.Module` 的 `__init__` 和 `forward()`。
 - [ ] 能解释 Embedding 表为什么是可训练参数、用户 ID 为什么能映射成一个向量。
 - [ ] 能训练至少一个小模型，确认 Loss、梯度、参数更新过程合理。
