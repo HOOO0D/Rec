@@ -61,16 +61,16 @@
   - **当日验收**：不看教程写出小型 nn.Module 和完整训练循环；手算并核对一次矩阵乘与多项式梯度；解释梯度累积，并用参数前后差异确认 step 有效。若仍需照抄，Day 2 开始前针对薄弱点补练。
 - [x] **Day 2｜Embedding 和批数据**：学习 `nn.Embedding`、`Dataset`、`DataLoader`、Batch 维度；从用户/物品 ID 得到向量并计算点积；完成 `embedding.py`。
   - **当日验收**：提交 embedding.py；一个批次的 ID 为 [B]、向量为 [B,d]、点积得分为 [B]；ID 使用整数类型；反传后被访问的 Embedding 行有梯度且更新，DataLoader 能遍历完整数据。
-- [ ] **Day 3｜周综合练习**：用两个 Embedding 表和一个简单 Loss 训练“用户—物品评分”小模型；检查参数确实发生更新；完成 `simple_recommender.py` 和 `week01_notes.md`。
+- [x] **Day 3｜周综合练习**：用两个 Embedding 表和一个简单 Loss 训练“用户—物品评分”小模型；检查参数确实发生更新；完成 `simple_recommender.py` 和 `week01_notes.md`。
   - **当日验收**：不照抄教程完成 simple_recommender.py；在固定种子的微型评分数据上观察 Loss 下降和参数更新；保存并重载后同一输入预测一致；提交 week01_notes.md 并通过本周全部验收。
 
 ### 周验收
 
 - [x] 不看教程解释 `Tensor.shape`、广播、向量点积、矩阵乘法。
 - [x] 能说出 `zero_grad()`、`backward()`、`step()` 的作用与顺序。
-- [ ] 能独立实现 `nn.Module` 的 `__init__` 和 `forward()`。
-- [ ] 能解释 Embedding 表为什么是可训练参数、用户 ID 为什么能映射成一个向量。
-- [ ] 能训练至少一个小模型，确认 Loss、梯度、参数更新过程合理。
+- [x] 能独立实现 `nn.Module` 的 `__init__` 和 `forward()`。
+- [x] 能解释 Embedding 表为什么是可训练参数、用户 ID 为什么能映射成一个向量。
+- [x] 能训练至少一个小模型，确认 Loss、梯度、参数更新过程合理。
 
 > **第 1 周无需学习**：CNN、计算机视觉、复杂 RNN、分布式训练、多卡训练、PyTorch 底层 CUDA 编程。
 
@@ -88,9 +88,9 @@
 
 ### 逐日清单
 
-- [ ] **Day 4｜推荐基本概念**：复习召回、排序、UserCF、ItemCF、MF；明确显式/隐式反馈、已观察/未观察交互；写一页概念笔记。
+- [x] **Day 4｜推荐基本概念**：复习召回、排序、UserCF、ItemCF、MF；明确显式/隐式反馈、已观察/未观察交互；写一页概念笔记。
   - **当日验收**：提交一页概念笔记，说明召回/排序、显式/隐式反馈、UserCF/ItemCF/MF；给出未交互不等于不喜欢的例子。
-- [ ] **Day 5｜矩阵分解**：理解用户/物品 Embedding、点积评分、正则化；使用 PyTorch 写 MF 评分函数；手动检查 `shape`。
+- [x] **Day 5｜矩阵分解**：理解用户/物品 Embedding、点积评分、正则化；使用 PyTorch 写 MF 评分函数；手动检查 `shape`。
   - **当日验收**：MF 支持批量用户/物品 ID；手算一组点积并与程序核对；说明正则化对象和评分输出形状。
 - [ ] **Day 6｜精读 BPR**：阅读论文第 1、3、4 节；理解训练三元组 `(u, i, j)`、BPR Loss、负采样；在纸上计算样例 Loss。
   - **当日验收**：写清 (u,i,j) 的约束；手算得分差为 0 时 Loss 为 log(2)，并验证正物品得分提高时 Loss 降低；记录论文假设。
