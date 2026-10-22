@@ -1,11 +1,4 @@
-"""Day 6 | Auto-assessment for BPR concepts and loss, total 100 points.
-
-Dependencies: Python >= 3.10; PyTorch. Run `python Test_Day6.py`
-in the same directory as `bpr_practice.py`.
-
-Tests deliberately do NOT require a negative sampler, complete BPR-MF
-training loop, RecBole, MovieLens, or evaluation metrics. Those come later.
-"""
+"""第 6 天：BPR 概念与损失自动验收，共 100 分。依赖 Python >= 3.10 和 PyTorch。在 bpr_practice.py 所在目录运行 python Test_Day6.py。不要求负采样器、完整 BPR-MF 训练、RecBole、MovieLens 或评估指标，后续再学习这些内容。"""
 from __future__ import annotations
 
 import math
@@ -37,7 +30,7 @@ def close(actual, expected, name, atol=1e-6, rtol=1e-6):
 
 
 def test_A():
-    """20 | Legal triples, exhaustive tiny-set enumeration, edge cases."""
+    """20 分：合法三元组、微型集合穷举与边界情况。"""
     positives = {0: {0, 2}, 1: {1}, 2: {0, 1, 2, 3}, 3: set()}
     good = [(0, 0, 1), (0, 2, 3), (1, 1, 0)]
     bad = [(0, 1, 2), (0, 0, 2), (1, 1, 1), (2, 0, 1),
@@ -61,7 +54,7 @@ def test_A():
 
 
 def test_B():
-    """20 | Matrix-factorization paired dot products and shapes."""
+    """20 分：矩阵分解配对点积与形状。"""
     users = torch.tensor([[1., 2.], [3., -1.]])
     items = torch.tensor([[2., 1.], [1., -2.], [-1., 1.], [0., 3.]])
     triples = torch.tensor([[0, 0, 1], [1, 3, 2]], dtype=torch.long)
@@ -77,7 +70,7 @@ def test_B():
 
 
 def test_C():
-    """25 | Sigmoid, log(2), manual values and correct mean reduction."""
+    """25 分：Sigmoid、log(2)、手算值与均值归约。"""
     delta = torch.tensor([-2., 0., 2.], dtype=torch.float64)
     probs = preference_probability(delta)
     expected_probs = torch.tensor([
@@ -100,7 +93,7 @@ def test_C():
 
 
 def test_D():
-    """20 | Gradients flow to user, positive item, negative item."""
+    """20 分：梯度流向用户、正样本物品和负样本物品。"""
     users = torch.tensor([[1.]], requires_grad=True)
     items = torch.tensor([[0.5], [0.]], requires_grad=True)
     triples = torch.tensor([[0, 0, 1]], dtype=torch.long)
@@ -123,7 +116,7 @@ def test_D():
 
 
 def test_E():
-    """15 | Numeric stability for extreme scores; no NaN gradients."""
+    """15 分：极端得分下数值稳定，梯度无 NaN。"""
     delta = torch.tensor([-1000., 0., 1000.], dtype=torch.float64,
                          requires_grad=True)
     p = preference_probability(delta)

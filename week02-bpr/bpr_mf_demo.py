@@ -1,4 +1,4 @@
-"""A minimal, runnable BPR-MF example (implicit feedback, leave-one-out evaluation)."""
+"""最小可运行的 BPR-MF 示例：隐式反馈与留一法评估。"""
 import random
 
 import torch
@@ -11,7 +11,7 @@ SEED = 2026
 random.seed(SEED)
 torch.manual_seed(SEED)
 
-# Example: items clicked/liked by each user. No explicit ratings required.
+# 示例：用户点击或喜欢的物品，无需显式评分。
 interactions = {
     0: [0, 1, 2, 3, 4],
     1: [0, 1, 2, 3, 5],
@@ -24,8 +24,8 @@ interactions = {
 }
 num_users, num_items = 8, 16
 
-# Hold out one observed positive per user for validation.
-# Only training positives participate in the negative sampler.
+# 每位用户留出一个已观察正样本用于验证。
+# 负采样器仅使用训练集正样本。
 rng = random.Random(SEED)
 train, valid = {}, {}
 for u, items in interactions.items():
@@ -49,7 +49,7 @@ class BPRDataset(Dataset):
 
     def __getitem__(self, index):
         u, i = self.positive_pairs[index]
-        # Re-sample on each access; negative = not in this user's TRAIN positives.
+        # 每次访问重新采样；负样本不在该用户训练正样本中。
         j = self.rng.randrange(self.n_items)
         while j in self.train_items[u]:
             j = self.rng.randrange(self.n_items)
@@ -78,7 +78,7 @@ class BPRMF(nn.Module):
 @torch.no_grad()
 def evaluate(model, train_items, valid_items, k=3):
     model.eval()
-    # For each user: rank held-out positive against all items not in TRAIN.
+    # 将留出正样本与训练集之外的全部物品一起排序。
     scores = model.score_all(torch.arange(num_users))
     auc_total, hit_total = 0.0, 0.0
     for u, true_item in valid_items.items():
@@ -115,7 +115,7 @@ def main():
         for users, pos_items, neg_items in loader:
             delta, w, h_pos, h_neg = model(users, pos_items, neg_items)
             bpr_loss = -F.logsigmoid(delta).mean()
-            # Regularize embeddings participating in this minibatch.
+            # 对当前小批次涉及的嵌入向量正则化。
             reg_loss = 0.5 * (
                 lambda_w * w.square().sum(dim=1)
                 + lambda_pos * h_pos.square().sum(dim=1)
@@ -132,7 +132,7 @@ def main():
             print(f"Epoch {epoch:>3}: loss={epoch_loss/len(loader):.4f}, "
                   f"HR@3={hit:.3f}, user-AUC={auc:.3f}")
 
-    # Produce recommendations for user 0, excluding training interactions.
+    # 为用户 0 生成推荐，排除训练交互。
     model.eval()
     with torch.no_grad():
         scores = model.score_all(torch.tensor([0])).squeeze(0)
