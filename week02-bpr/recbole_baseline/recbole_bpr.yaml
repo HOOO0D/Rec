@@ -1,0 +1,49 @@
+# Day 9：RecBole BPR 基线配置
+# 数据集和模型名在 run_day9.py 中指定：ml-100k、BPR。
+# 首次实验使用 RecBole 自带的 ml-100k，不等于 Day 7 冻结的数据划分。
+
+# 环境设置：先确保能够稳定复现实验
+seed: 20261020
+reproducibility: true
+use_gpu: false
+show_progress: false
+
+# 只使用用户与物品两列；每条已观察评分对应一条隐式正交互
+USER_ID_FIELD: user_id
+ITEM_ID_FIELD: item_id
+load_col:
+  inter: [user_id, item_id]
+
+# 基础 BPR 双 Embedding 配置
+embedding_size: 16
+
+# 首次运行采用框架默认优化器 Adam，与手写 SGD 明确区分
+learner: adam
+learning_rate: 0.001
+weight_decay: 0.0
+epochs: 10
+train_batch_size: 1024
+eval_batch_size: 1024
+eval_step: 1
+stopping_step: 5
+
+# RecBole 采用对训练正交互采样未观察物品的流程
+# 不应直接认定它与 Day 7 对全部合法三元组均匀有放回的抽样一致
+train_neg_sample_args:
+  distribution: uniform
+  sample_num: 1
+  alpha: 1.0
+  dynamic: false
+  candidate_num: 0
+
+# 用户分组、随机交互划分与全物品排序
+# 这一划分与 Day 7 的独立脚本即使 seed 相同也不保证逐条一致
+eval_args:
+  split: {'RS': [0.8, 0.1, 0.1]}
+  group_by: user
+  order: RO
+  mode: full
+metrics: [Recall, Hit, NDCG]
+topk: [10]
+valid_metric: NDCG@10
+metric_decimal_place: 4

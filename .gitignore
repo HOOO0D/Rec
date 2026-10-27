@@ -35,7 +35,7 @@ runs/
 *.log
 tmp/
 temp/
-
+log_tensorboard/
 # 凭证和密钥
 .env
 .env.*

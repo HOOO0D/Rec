@@ -1,0 +1,48 @@
+# 基础配置
+seed: 20261020
+reproducibility: true
+use_gpu: false
+show_progress: false
+
+# 数据字段
+USER_ID_FIELD: user_id
+ITEM_ID_FIELD: item_id
+
+# 只加载用户与物品 ID
+load_col:
+  inter: [user_id, item_id]
+
+# BPR 模型配置
+embedding_size: 16
+
+# 优化器配置
+learner: adam
+learning_rate: 0.001
+weight_decay: 0.0
+
+# 训练配置
+epochs: 10
+train_batch_size: 1024
+eval_batch_size: 1024
+eval_step: 1
+stopping_step: 5
+
+# 训练负采样
+train_neg_sample_args:
+  distribution: uniform
+  sample_num: 1
+  alpha: 1.0
+  dynamic: false
+  candidate_num: 0
+
+# 评价配置
+eval_args:
+  split: {'RS': [0.8, 0.1, 0.1]}
+  group_by: user
+  order: RO
+  mode: full
+
+metrics: [Recall, Hit, NDCG]
+topk: [10]
+valid_metric: NDCG@10
+metric_decimal_place: 4
