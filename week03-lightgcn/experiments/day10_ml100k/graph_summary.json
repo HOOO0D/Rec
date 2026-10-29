@@ -1,0 +1,22 @@
+{
+  "num_users": 943,
+  "num_items": 1682,
+  "num_nodes": 2625,
+  "num_train_pairs": 80808,
+  "num_undirected_edges": 80808,
+  "num_stored_directed_entries": 161616,
+  "num_isolated_nodes": 27,
+  "num_valid_pairs_audited": 9596,
+  "num_test_pairs_audited": 9596,
+  "adjacency_shape": [
+    2625,
+    2625
+  ],
+  "adjacency_layout": "sparse_coo",
+  "graph_source": "train_only",
+  "has_self_loops": false,
+  "has_normalization": false,
+  "train_pairs_sha256": "f5917598e735fa1ce339bb50341e890f4d74330e5a40169b48f45edf9cefcf0f",
+  "day7_seed": 20261020,
+  "day7_run_dir": "week02-bpr\\runs\\day7_sgd_ml100k"
+}
