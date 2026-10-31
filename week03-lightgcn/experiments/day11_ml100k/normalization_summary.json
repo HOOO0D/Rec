@@ -1,0 +1,16 @@
+{
+  "num_users": 943,
+  "num_items": 1682,
+  "num_nodes": 2625,
+  "num_train_undirected_edges": 80808,
+  "num_sparse_entries": 161616,
+  "num_isolated_nodes": 27,
+  "normalization": "symmetric_degree_no_self_loops",
+  "graph_source": "train_only",
+  "train_pairs_sha256": "f5917598e735fa1ce339bb50341e890f4d74330e5a40169b48f45edf9cefcf0f",
+  "day7_seed": 20261020,
+  "day10_graph_dir": "experiments\\day10_ml100k",
+  "features_note": "仅为一次传播的确定性数值检查，不是可训练用户物品 Embedding",
+  "all_edge_weights_finite": true,
+  "all_aggregate_values_finite": true
+}
